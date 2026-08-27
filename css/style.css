@@ -135,16 +135,6 @@ body {
   margin-bottom: 14px;
 }
 
-.id-pill {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #8c93a4;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 3px 8px;
-  border-radius: 6px;
-}
-
 .country-pill {
   display: inline-flex;
   align-items: center;
@@ -266,38 +256,30 @@ body {
   max-width: 330px;
 }
 
-.btn-beloved {
-  position: relative;
+.profile-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   width: 100%;
   padding: 12px 20px;
-  background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
-  color: #ffffff;
-  font-size: 0.92rem;
-  font-weight: 700;
+  background: rgba(69, 188, 243, 0.08);
+  color: #45bcf3;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 20px rgba(225, 29, 72, 0.3);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(69, 188, 243, 0.25);
+  backdrop-filter: blur(5px);
+  transition: all 0.25s ease;
 }
 
-.btn-beloved:hover {
+.profile-btn:hover {
+  background: #45bcf3;
+  color: #08090b;
+  border-color: #45bcf3;
   transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(225, 29, 72, 0.45);
-}
-
-.beat-icon {
-  animation: pulse-heart 1.8s infinite;
-}
-
-@keyframes pulse-heart {
-  0%, 100% { transform: scale(1); }
-  14%, 42% { transform: scale(1.2); }
-  28% { transform: scale(1); }
+  box-shadow: 0 8px 20px rgba(69, 188, 243, 0.35);
 }
 
 /* Footer / Créditos */
