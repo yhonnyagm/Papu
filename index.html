@@ -17,7 +17,7 @@
   <body>
 
     <main class="space-card">
-      <!-- Portada Superior con Filtro Gradiente -->
+      <!-- Portada Superior -->
       <div class="card-cover">
         <div class="cover-overlay"></div>
         <div class="live-pill">
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <!-- Contenedor Principal de la Tarjeta -->
+      <!-- Contenido Principal -->
       <div class="card-content">
         
         <!-- Foto en Squircle -->
@@ -34,7 +34,7 @@
           <img src="/DeymiansPicProfile_13.png" alt="Deymians" class="avatar-squircle" />
         </div>
 
-        <!-- Información y Detalles -->
+        <!-- Información -->
         <div class="profile-details">
           <div class="identity-header">
             <h1 class="username">Deymians</h1>
@@ -47,7 +47,24 @@
             </div>
           </div>
 
-          <!-- Acción Principal: Mi esposa -->
+          <!-- Reproductor Mini Estilo Spotify -->
+          <div class="spotify-player">
+            <div class="song-info">
+              <div class="equalizer-waves" id="equalizer">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="track-meta">
+                <p class="song-title">Mala Costumbre</p>
+                <p class="song-artist">Manuel Turizo, Wisin & Yandel</p>
+              </div>
+            </div>
+            
+            <button class="player-btn" id="playPauseBtn" aria-label="Reproducir / Pausar">
+              <i class="fa-solid fa-play" id="playIcon"></i>
+            </button>
+          </div>
+
+          <!-- Botón Destacado: Mi esposa -->
           <div class="action-area">
             <a href="https://xat.me/Quevezorra" class="btn-beloved" target="_blank" rel="noopener">
               <i class="fa-solid fa-heart beat-icon"></i>
@@ -58,11 +75,80 @@
 
       </div>
 
-      <!-- Créditos / Watermark Minimalista -->
+      <!-- Créditos / Watermark -->
       <footer class="card-footer">
         <p>XatSpace made by <strong>Deymians</strong></p>
       </footer>
     </main>
+
+    <!-- Contenedor oculto del reproductor de YouTube -->
+    <div id="youtube-audio-player" style="display: none;"></div>
+
+    <!-- YouTube IFrame API & Script de Control -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+      let player;
+      let isPlaying = false;
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const playIcon = document.getElementById('playIcon');
+      const equalizer = document.getElementById('equalizer');
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-audio-player', {
+          height: '0',
+          width: '0',
+          videoId: 'YuJvst9tsu8',
+          playerVars: {
+            'autoplay': 1,
+            'controls': 0,
+            'loop': 1,
+            'playlist': 'YuJvst9tsu8'
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+        event.target.playVideo();
+        
+        // Desbloqueo de audio ante restricciones de autoplay
+        const unlockAudio = () => {
+          if (player && typeof player.playVideo === 'function') {
+            player.playVideo();
+          }
+          document.removeEventListener('click', unlockAudio);
+          document.removeEventListener('touchstart', unlockAudio);
+        };
+
+        document.addEventListener('click', unlockAudio, { once: true });
+        document.addEventListener('touchstart', unlockAudio, { once: true });
+      }
+
+      function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+          isPlaying = true;
+          playIcon.className = 'fa-solid fa-pause';
+          equalizer.classList.add('playing');
+        } else {
+          isPlaying = false;
+          playIcon.className = 'fa-solid fa-play';
+          equalizer.classList.remove('playing');
+        }
+      }
+
+      playPauseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!player) return;
+        if (isPlaying) {
+          player.pauseVideo();
+        } else {
+          player.playVideo();
+        }
+      });
+    </script>
 
   </body>
 </html>
