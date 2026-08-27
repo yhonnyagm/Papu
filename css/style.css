@@ -189,7 +189,7 @@ body {
 .equalizer-waves span {
   width: 3px;
   height: 4px;
-  background-color: #1db954;
+  background-color: #e11d48;
   border-radius: 2px;
   transition: height 0.2s ease;
 }
@@ -230,8 +230,8 @@ body {
 }
 
 .player-btn {
-  background: #1db954;
-  color: #08090b;
+  background: #e11d48;
+  color: #ffffff;
   border: none;
   border-radius: 50%;
   width: 32px;
@@ -247,7 +247,7 @@ body {
 
 .player-btn:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 12px rgba(29, 185, 84, 0.4);
+  box-shadow: 0 0 12px rgba(225, 29, 72, 0.5);
 }
 
 /* Botón "Mi Esposa" */
