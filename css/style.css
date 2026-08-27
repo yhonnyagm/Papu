@@ -44,7 +44,7 @@ body {
   position: relative;
   width: 100%;
   height: 165px;
-  background: url("/PapuBanner.jpeg") no-repeat center 35% / cover;
+  background: url("../PapuBanner.jpeg") no-repeat center 35% / cover;
 }
 
 .cover-overlay {
